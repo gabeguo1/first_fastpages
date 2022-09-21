@@ -10,16 +10,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
 <meta property="og:description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
-<link rel="canonical" href="https://gabeguo1.github.io/first_fastpages/" />
-<meta property="og:url" content="https://gabeguo1.github.io/first_fastpages/" />
+<link rel="canonical" href="https://gabeguo1.github.io/first_fastpages/1single.html" />
+<meta property="og:url" content="https://gabeguo1.github.io/first_fastpages/1single.html" />
 <meta property="og:site_name" content="Gabes ML model" />
-<meta property="og:image" content="https://gabeguo1.github.io/first_fastpages/images/logo.png" />
 <meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://gabeguo1.github.io/first_fastpages/images/logo.png" />
+<meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Gabes ML model" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"An easy to use blogging platform with support for Jupyter Notebooks.","headline":"Gabes ML model","image":"https://gabeguo1.github.io/first_fastpages/images/logo.png","name":"Gabes ML model","url":"https://gabeguo1.github.io/first_fastpages/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"An easy to use blogging platform with support for Jupyter Notebooks.","headline":"Gabes ML model","url":"https://gabeguo1.github.io/first_fastpages/1single.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/first_fastpages/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gabeguo1.github.io/first_fastpages/feed.xml" title="Gabes ML model" /><link rel="shortcut icon" type="image/x-icon" href="/first_fastpages/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -71,47 +69,26 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><p>My first ML model <a href="https://gabeguo1.github.io/first_fastpages/1single.html">fastpages</a>.</p>
+        <input id="photo" type="file">
+<div id="results"></div>
+<script>
+  async function loaded(reader) {
+    const response = await fetch('https://hf.space/embed/letsguo/first_project/+/api/predict', {
+      method: "POST", body: JSON.stringify({ "data": [reader.result] }),
+      headers: { "Content-Type": "application/json" }
+    });
+    const json = await response.json();
+    const label = json['data'][0]['confidences'][0]['label'];
+    results.innerHTML = `<br/><img src="${reader.result}" width="300"> <p>${label}</p>`
+  }
+  function read() {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => loaded(reader))
+    reader.readAsDataURL(photo.files[0]);
+  }
+  photo.addEventListener('input', read);
+</script>
 
-<p><img src="/first_fastpages/images/diagram.png" alt="" title="https://github.com/fastai/fastpages" /></p>
-
-<p><a href="https://github.com/fastai/fastpages">fastpages</a> automates the process of creating blog posts via GitHub Actions, so you don’t have to fuss with conversion scripts.  A full list of features can be found on <a href="https://github.com/fastai/fastpages">GitHub</a>.</p>
-
-<p>You can edit the <code class="language-plaintext highlighter-rouge">index.html</code> file to change this content.</p>
-
-<h1 id="posts">Posts</h1>
-
-
-
-  
-
-  <!-- Hide posts if front matter flag hide:true -->
-  
-  
-
-  <!-- Sort posts by rank, then date -->
-  
-  
-  
-
- 
-  
-
-   <!-- Assemble final sorted posts array -->
-  
-  <ul class="post-list"><li><h3>
-    <a class="post-link" href="/first_fastpages/jupyter/2020/02/20/test.html">
-    Fastpages Notebook Blog Post
-    </a>
-</h3><p class="post-meta-description">A tutorial of fastpages for Jupyter notebooks.</p><p class="post-meta">Feb 20, 2020</p>
-</li><li><h3>
-    <a class="post-link" href="/first_fastpages/markdown/2020/01/14/test-markdown-post.html">
-    An Example Markdown Post
-    </a>
-</h3><p class="post-meta-description">A minimal example of using markdown with fastpages.</p><p class="post-meta">Jan 14, 2020</p>
-</li></ul>
-
-    </div>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/first_fastpages/"></data>
